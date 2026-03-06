@@ -1,0 +1,2193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundSteps | Parent-Led Speech Practice at Home</title>
+    <meta name="description"
+        content="SoundSteps helps families support children with speech development at home. Calm, structured practice while you wait for or alongside professional support.">
+    <meta name="keywords"
+        content="speech therapy app, parent led speech practice, children speech development UK, speech delay support, early access speech app, SoundSteps, NHS speech therapy waiting list">
+    <meta name="author" content="SoundSteps">
+    <meta property="og:title" content="SoundSteps | Supporting Your Child's Speech Journey">
+    <meta property="og:description"
+        content="A calm, parent-led app to help children practise speech sounds at home. Built by parents, for parents.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://soundsteps.co.uk">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --coral: #E05C45;
+            --coral-2: #F07A63;
+            --coral-glow: rgba(224, 92, 69, 0.18);
+            --coral-pale: #FDF1EE;
+            --mint: #48B5A0;
+            --mint-2: #6DCFBB;
+            --mint-glow: rgba(72, 181, 160, 0.16);
+            --mint-pale: #EAF8F5;
+            --cream: #FAF8F4;
+            --warm: #FFFEFB;
+            --ink: #141520;
+            --ink-2: #2C2F42;
+            --ink-3: #545872;
+            --ink-4: #8A8EA8;
+            --gold: #C9973A;
+            --gold-pale: #FDF5E6;
+            --surface: #FFFFFF;
+            --border: rgba(20, 21, 32, 0.08);
+            --border-strong: rgba(20, 21, 32, 0.14);
+            --r-xs: 10px;
+            --r-sm: 18px;
+            --r-md: 28px;
+            --r-lg: 44px;
+            --r-xl: 80px;
+            --sh-xs: 0 2px 10px rgba(20, 21, 32, 0.05);
+            --sh-sm: 0 8px 28px rgba(20, 21, 32, 0.08);
+            --sh-md: 0 20px 60px rgba(20, 21, 32, 0.11);
+            --sh-lg: 0 40px 100px rgba(20, 21, 32, 0.15);
+            --sh-coral: 0 12px 40px rgba(224, 92, 69, 0.28);
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--ink);
+            background: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.65;
+        }
+
+        ::selection {
+            background: var(--coral);
+            color: white;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.08;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            color: var(--ink-3);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+        }
+
+        .reveal.from-left {
+            transform: translateX(-40px);
+        }
+
+        .reveal.from-right {
+            transform: translateX(40px);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        .d1 {
+            transition-delay: 0.08s;
+        }
+
+        .d2 {
+            transition-delay: 0.18s;
+        }
+
+        .d3 {
+            transition-delay: 0.28s;
+        }
+
+        .d4 {
+            transition-delay: 0.38s;
+        }
+
+        .d5 {
+            transition-delay: 0.48s;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 32px;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.97rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.4s var(--ease);
+            text-decoration: none;
+            letter-spacing: 0.01em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .btn-primary {
+            background: var(--coral);
+            color: white;
+            box-shadow: var(--sh-coral);
+        }
+
+        .btn-primary::after {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), transparent);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 18px 50px rgba(224, 92, 69, 0.38);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--ink);
+            border: 1.5px solid var(--border-strong);
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--coral);
+            color: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        .btn-light {
+            background: rgba(255, 255, 255, 0.12);
+            color: white;
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        .btn-light:hover {
+            background: rgba(255, 255, 255, 0.22);
+            transform: translateY(-2px);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 22px 0;
+            transition: all 0.6s var(--ease);
+        }
+
+        nav.stuck {
+            background: rgba(250, 248, 244, 0.88);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 14px 0;
+            box-shadow: 0 1px 0 var(--border), var(--sh-xs);
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.45rem;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+        }
+
+        .nav-logo-mark {
+            width: 42px;
+            height: 42px;
+            background: var(--coral);
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(224, 92, 69, 0.35);
+        }
+
+        .nav-logo-mark::before {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 150%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+            top: -25%;
+            left: -25%;
+        }
+
+        .nav-logo-mark i {
+            color: white;
+            font-size: 1.05rem;
+            position: relative;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 90px;
+            position: relative;
+            overflow: hidden;
+            background: var(--cream);
+        }
+
+        .hero-canvas {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .hero-mesh {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 80% 60% at 70% 30%, rgba(224, 92, 69, 0.08) 0%, transparent 60%), radial-gradient(ellipse 60% 50% at 20% 80%, rgba(72, 181, 160, 0.07) 0%, transparent 60%);
+        }
+
+        .hero-grain {
+            position: absolute;
+            inset: 0;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+        }
+
+        .hero-line-1 {
+            position: absolute;
+            top: 15%;
+            right: 8%;
+            width: 1px;
+            height: 200px;
+            background: linear-gradient(to bottom, transparent, var(--coral), transparent);
+            opacity: 0.3;
+            animation: linePulse 4s ease-in-out infinite;
+        }
+
+        .hero-line-2 {
+            position: absolute;
+            bottom: 20%;
+            left: 6%;
+            width: 1px;
+            height: 140px;
+            background: linear-gradient(to bottom, transparent, var(--mint), transparent);
+            opacity: 0.25;
+            animation: linePulse 5s ease-in-out infinite 1.5s;
+        }
+
+        .hero-circle {
+            position: absolute;
+            top: 12%;
+            left: 4%;
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            border: 1px solid rgba(224, 92, 69, 0.07);
+            animation: rotateSlow 30s linear infinite;
+        }
+
+        .hero-circle::after {
+            content: '';
+            position: absolute;
+            top: 10%;
+            left: 10%;
+            right: 10%;
+            bottom: 10%;
+            border-radius: 50%;
+            border: 1px solid rgba(72, 181, 160, 0.06);
+        }
+
+        @keyframes linePulse {
+
+            0%,
+            100% {
+                opacity: 0.15;
+                transform: scaleY(0.8);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scaleY(1);
+            }
+        }
+
+        @keyframes rotateSlow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            padding: 5rem 0;
+        }
+
+        .hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--mint-pale);
+            color: var(--mint);
+            padding: 7px 16px;
+            border-radius: 100px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            margin-bottom: 1.8rem;
+            border: 1px solid rgba(72, 181, 160, 0.25);
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .hero-eyebrow i {
+            font-size: 0.7rem;
+        }
+
+        h1.hero-headline {
+            font-size: clamp(3rem, 5.2vw, 4.6rem);
+            font-weight: 900;
+            color: var(--ink);
+            margin-bottom: 1.6rem;
+            line-height: 1.05;
+        }
+
+        h1.hero-headline em {
+            font-style: italic;
+            color: var(--coral);
+            position: relative;
+        }
+
+        h1.hero-headline em::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--coral);
+            border-radius: 2px;
+            opacity: 0.4;
+        }
+
+        .hero-sub {
+            font-size: 1.12rem;
+            line-height: 1.78;
+            margin-bottom: 2.8rem;
+            max-width: 460px;
+            color: var(--ink-3);
+        }
+
+        .hero-btns {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .hero-social-proof {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .proof-avatars {
+            display: flex;
+        }
+
+        .proof-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid white;
+            margin-right: -8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .pa-1 {
+            background: linear-gradient(135deg, #E05C45, #F07A63);
+        }
+
+        .pa-2 {
+            background: linear-gradient(135deg, #48B5A0, #6DCFBB);
+        }
+
+        .pa-3 {
+            background: linear-gradient(135deg, #C9973A, #E0B055);
+        }
+
+        .proof-text {
+            font-size: 0.83rem;
+            color: var(--ink-4);
+            font-weight: 500;
+        }
+
+        .proof-text strong {
+            color: var(--ink-3);
+            font-weight: 700;
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 540px;
+        }
+
+        .orb-main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #FDF1EE, #EAF8F5);
+            box-shadow: 0 0 0 20px rgba(224, 92, 69, 0.04), 0 0 0 40px rgba(72, 181, 160, 0.03), var(--sh-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .orb-inner {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: var(--sh-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .orb-icon {
+            font-size: 2.2rem;
+            color: var(--coral);
+        }
+
+        .wave-vis {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            height: 48px;
+        }
+
+        .wv-bar {
+            width: 5px;
+            border-radius: 10px;
+            background: var(--coral);
+            animation: wvAnim 1.6s ease-in-out infinite;
+        }
+
+        .wv-bar:nth-child(1) {
+            height: 16px;
+            animation-delay: 0s;
+        }
+
+        .wv-bar:nth-child(2) {
+            height: 28px;
+            animation-delay: 0.12s;
+        }
+
+        .wv-bar:nth-child(3) {
+            height: 44px;
+            animation-delay: 0.24s;
+        }
+
+        .wv-bar:nth-child(4) {
+            height: 36px;
+            animation-delay: 0.36s;
+        }
+
+        .wv-bar:nth-child(5) {
+            height: 24px;
+            animation-delay: 0.48s;
+        }
+
+        .wv-bar:nth-child(6) {
+            height: 44px;
+            animation-delay: 0.6s;
+        }
+
+        .wv-bar:nth-child(7) {
+            height: 28px;
+            animation-delay: 0.72s;
+        }
+
+        .wv-bar:nth-child(8) {
+            height: 16px;
+            animation-delay: 0.84s;
+        }
+
+        @keyframes wvAnim {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+            }
+
+            50% {
+                transform: scaleY(0.3);
+            }
+        }
+
+        .chip-card {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: var(--sh-md);
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            border: 1px solid var(--border);
+        }
+
+        .chip-card .cc-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .chip-card .cc-icon i {
+            font-size: 1rem;
+        }
+
+        .cc-coral {
+            background: var(--coral-pale);
+            color: var(--coral);
+        }
+
+        .cc-mint {
+            background: var(--mint-pale);
+            color: var(--mint);
+        }
+
+        .cc-gold {
+            background: var(--gold-pale);
+            color: var(--gold);
+        }
+
+        .chip-card h5 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 2px;
+        }
+
+        .chip-card p {
+            font-size: 0.76rem;
+            color: var(--ink-4);
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        .chip-a {
+            top: 4%;
+            right: 2%;
+            animation: chipFloat1 7s ease-in-out infinite;
+        }
+
+        .chip-b {
+            top: 40%;
+            left: -2%;
+            animation: chipFloat2 9s ease-in-out infinite;
+        }
+
+        .chip-c {
+            bottom: 4%;
+            right: 4%;
+            animation: chipFloat1 8s ease-in-out infinite reverse;
+        }
+
+        @keyframes chipFloat1 {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-16px);
+            }
+        }
+
+        @keyframes chipFloat2 {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        .pill-tag {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--ink);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 100px;
+            font-size: 0.76rem;
+            font-weight: 600;
+        }
+
+        .pill-a {
+            bottom: 32%;
+            left: 6%;
+            animation: chipFloat2 11s ease-in-out infinite 2s;
+        }
+
+        .pill-a i {
+            color: var(--mint-2);
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--ink-4);
+            margin-bottom: 1.2rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 22px;
+            height: 2px;
+            background: var(--coral);
+            border-radius: 2px;
+        }
+
+        .problem-section {
+            padding: 8rem 0;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-strong), transparent);
+        }
+
+        .prob-header {
+            max-width: 680px;
+        }
+
+        .prob-header h2 {
+            font-size: clamp(2.2rem, 4.2vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 1.2rem;
+        }
+
+        .prob-header p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin: 4.5rem 0;
+        }
+
+        .stat-card {
+            padding: 2.5rem 2rem;
+            border-radius: 26px;
+            background: var(--cream);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sh-md);
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 0 0 26px 26px;
+        }
+
+        .stat-card:nth-child(1)::after {
+            background: var(--coral);
+        }
+
+        .stat-card:nth-child(2)::after {
+            background: var(--mint);
+        }
+
+        .stat-card:nth-child(3)::after {
+            background: var(--gold);
+        }
+
+        .stat-card:nth-child(4)::after {
+            background: var(--coral-2);
+        }
+
+        .stat-big {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.4rem;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            color: var(--ink);
+        }
+
+        .stat-big .accent {
+            color: var(--coral);
+        }
+
+        .stat-desc {
+            font-size: 0.88rem;
+            color: var(--ink-3);
+            line-height: 1.55;
+            font-weight: 500;
+        }
+
+        .stat-src {
+            font-size: 0.73rem;
+            color: var(--ink-4);
+            margin-top: 0.6rem;
+            font-style: italic;
+        }
+
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.4rem;
+            margin-top: 4rem;
+        }
+
+        .quote-card {
+            padding: 1.8rem 2rem;
+            border-radius: 22px;
+            border: 1px solid var(--border);
+            transition: all 0.4s var(--ease);
+            display: flex;
+            gap: 14px;
+        }
+
+        .quote-card:hover {
+            border-color: var(--coral-2);
+            transform: translateY(-5px);
+            box-shadow: var(--sh-sm);
+        }
+
+        .qc-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .qc-icon i {
+            font-size: 1.1rem;
+        }
+
+        blockquote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-style: italic;
+            color: var(--ink-2);
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+        }
+
+        cite {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--ink-4);
+            font-style: normal;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .solution-section {
+            padding: 8rem 0;
+            background: var(--cream);
+            position: relative;
+        }
+
+        .sol-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .sol-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sol-item {
+            background: white;
+            border-radius: 22px;
+            padding: 1.6rem 1.8rem;
+            display: flex;
+            gap: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.45s var(--ease);
+            cursor: default;
+        }
+
+        .sol-item:hover {
+            transform: translateX(8px);
+            box-shadow: var(--sh-sm);
+            border-color: var(--coral-pale);
+        }
+
+        .sol-num-badge {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--coral);
+            opacity: 0.5;
+            line-height: 1;
+            flex-shrink: 0;
+            width: 30px;
+            padding-top: 2px;
+        }
+
+        .sol-item-body h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--ink);
+            margin-bottom: 4px;
+        }
+
+        .sol-item-body p {
+            font-size: 0.88rem;
+            color: var(--ink-4);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .sol-text-side p {
+            font-size: 1.08rem;
+            line-height: 1.85;
+            margin-bottom: 1.4rem;
+        }
+
+        .sol-pull {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--coral);
+            border-left: 3px solid var(--coral);
+            padding-left: 1.4rem;
+            line-height: 1.6;
+            margin: 2rem 0;
+        }
+
+        .how-section {
+            padding: 8rem 0;
+            background: white;
+            position: relative;
+        }
+
+        .how-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--border-strong), transparent);
+        }
+
+        .how-header {
+            text-align: center;
+            max-width: 620px;
+            margin: 0 auto 5rem;
+        }
+
+        .how-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .steps-track {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .steps-spine {
+            position: absolute;
+            left: 52px;
+            top: 80px;
+            bottom: 80px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--coral), var(--mint-2));
+            border-radius: 2px;
+            opacity: 0.35;
+        }
+
+        .step-row {
+            display: flex;
+            gap: 2.8rem;
+            align-items: flex-start;
+            padding: 1.8rem 0;
+        }
+
+        .step-orb {
+            width: 104px;
+            height: 104px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.4s var(--ease-bounce);
+        }
+
+        .step-orb:hover {
+            transform: scale(1.1);
+        }
+
+        .step-orb i {
+            font-size: 2rem;
+        }
+
+        .so-coral {
+            background: linear-gradient(145deg, #FDF1EE, #FAE3DE);
+            color: var(--coral);
+            box-shadow: 0 8px 24px rgba(224, 92, 69, 0.15);
+        }
+
+        .so-mint {
+            background: linear-gradient(145deg, #EAF8F5, #D5F2EC);
+            color: var(--mint);
+            box-shadow: 0 8px 24px rgba(72, 181, 160, 0.15);
+        }
+
+        .so-gold {
+            background: linear-gradient(145deg, #FDF5E6, #F5E9C8);
+            color: var(--gold);
+            box-shadow: 0 8px 24px rgba(201, 151, 58, 0.15);
+        }
+
+        .step-content {
+            padding-top: 1.8rem;
+            flex: 1;
+        }
+
+        .step-content h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            font-size: 0.97rem;
+            line-height: 1.72;
+            margin: 0;
+        }
+
+        .step-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 0.8rem;
+            padding: 4px 12px;
+            background: var(--cream);
+            border-radius: 100px;
+            font-size: 0.77rem;
+            font-weight: 700;
+            color: var(--ink-4);
+            border: 1px solid var(--border);
+        }
+
+        .founder-section {
+            padding: 8rem 0;
+            background: linear-gradient(150deg, #13151F 0%, #1E2135 50%, #1A2438 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .founder-glow-1 {
+            position: absolute;
+            top: -20%;
+            right: -10%;
+            width: 55%;
+            height: 120%;
+            background: radial-gradient(ellipse, rgba(224, 92, 69, 0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .founder-glow-2 {
+            position: absolute;
+            bottom: -20%;
+            left: -5%;
+            width: 40%;
+            height: 80%;
+            background: radial-gradient(ellipse, rgba(72, 181, 160, 0.07) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .founder-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 36px 36px;
+            opacity: 0.8;
+        }
+
+        .founder-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 6rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .founder-section .section-tag {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .founder-section .section-tag::before {
+            background: var(--coral-2);
+        }
+
+        .founder-h2 {
+            color: white;
+            font-size: clamp(2rem, 3.8vw, 2.8rem);
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .founder-glass {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 22px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .founder-glass h4 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            color: white;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .founder-glass h4 i {
+            color: var(--coral-2);
+        }
+
+        .founder-checklist {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .founder-checklist li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.93rem;
+        }
+
+        .founder-checklist li i {
+            color: var(--mint-2);
+            font-size: 0.8rem;
+        }
+
+        .founder-avatar-ring {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--coral-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 28px rgba(224, 92, 69, 0.35);
+        }
+
+        .founder-avatar-ring i {
+            font-size: 1.8rem;
+            color: white;
+        }
+
+        .founder-big-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.88);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+            border-left: 3px solid var(--coral-2);
+        }
+
+        .founder-story p {
+            color: rgba(255, 255, 255, 0.62);
+            font-size: 0.95rem;
+            line-height: 1.82;
+            margin-bottom: 1.1rem;
+        }
+
+        .founder-story p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ea-section {
+            padding: 8rem 0;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ea-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse 70% 50% at 50% 50%, rgba(224, 92, 69, 0.04) 0%, transparent 60%);
+        }
+
+        .ea-header {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 3.5rem;
+            position: relative;
+        }
+
+        .ea-header h2 {
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .ea-header p {
+            font-size: 1.05rem;
+            line-height: 1.78;
+        }
+
+        .ea-why-box {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            padding: 2rem 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .ea-why-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 2rem;
+            right: 2rem;
+            height: 3px;
+            background: linear-gradient(to right, var(--coral), var(--mint));
+            border-radius: 0 0 4px 4px;
+            top: auto;
+            bottom: 0;
+        }
+
+        .ea-why-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--ink);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .ea-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .ea-perk {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--ink-3);
+        }
+
+        .ea-perk i {
+            color: var(--mint);
+            font-size: 0.82rem;
+        }
+
+        .ea-chips {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .ea-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: var(--cream);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            padding: 7px 16px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--ink-3);
+        }
+
+        .ea-chip i {
+            color: var(--coral);
+            font-size: 0.78rem;
+        }
+
+        .form-card {
+            max-width: 780px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 32px;
+            padding: 3.5rem;
+            box-shadow: var(--sh-lg);
+            border: 1px solid var(--border);
+        }
+
+        .form-top {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .form-top h3 {
+            font-size: 1.65rem;
+            font-weight: 900;
+            margin-bottom: 0.6rem;
+        }
+
+        .form-top p {
+            font-size: 0.95rem;
+            color: var(--ink-4);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.4rem;
+        }
+
+        .fg {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .fg.span2 {
+            grid-column: 1/-1;
+        }
+
+        .fg label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: 0.01em;
+        }
+
+        .fg label .req {
+            color: var(--coral);
+        }
+
+        .fg input,
+        .fg select,
+        .fg textarea {
+            padding: 13px 16px;
+            border: 1.5px solid var(--border-strong);
+            border-radius: 12px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            color: var(--ink);
+            background: var(--cream);
+            transition: all 0.35s var(--ease);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .fg input:focus,
+        .fg select:focus,
+        .fg textarea:focus {
+            border-color: var(--mint);
+            background: white;
+            box-shadow: 0 0 0 4px var(--mint-glow);
+        }
+
+        .fg select {
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238A8EA8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        .fg textarea {
+            resize: vertical;
+            min-height: 90px;
+            line-height: 1.6;
+        }
+
+        .check-wrap {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .check-wrap input[type=checkbox] {
+            width: 18px;
+            height: 18px;
+            margin-top: 3px;
+            accent-color: var(--mint);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .check-wrap span {
+            font-size: 0.88rem;
+            color: var(--ink-3);
+            line-height: 1.55;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            margin-top: 0.4rem;
+            border-radius: 14px;
+            justify-content: center;
+        }
+
+        .success-panel {
+            display: none;
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+
+        .success-orb {
+            width: 84px;
+            height: 84px;
+            background: linear-gradient(145deg, #EAF8F5, #D5F2EC);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .success-orb i {
+            font-size: 2rem;
+            color: var(--mint);
+        }
+
+        .success-panel h3 {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: var(--ink);
+        }
+
+        .success-panel p {
+            font-size: 1.05rem;
+            color: var(--ink-3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: #0F1018;
+            color: white;
+            padding: 5rem 0 2.5rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .nav-logo {
+            color: white;
+            margin-bottom: 1.1rem;
+            display: inline-flex;
+        }
+
+        .footer-brand .nav-logo-mark {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.88rem;
+            line-height: 1.72;
+            max-width: 280px;
+        }
+
+        .footer-col h6 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: 0.75rem;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.35);
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul li a {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.88rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--coral-2);
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.07);
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+
+        .footer-bottom p a {
+            color: var(--mint-2);
+        }
+
+        .dev-credit {
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 0.8rem;
+        }
+
+        .dev-credit span {
+            color: var(--coral-2);
+            font-weight: 700;
+        }
+
+        @media(max-width:1024px) {
+
+            .hero-layout,
+            .sol-grid,
+            .founder-layout {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                height: 380px;
+                margin-top: 1rem;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media(max-width:768px) {
+            h1.hero-headline {
+                font-size: 2.7rem;
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .quotes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-spine {
+                display: none;
+            }
+
+            .step-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-actions .btn-ghost {
+                display: none;
+            }
+
+            .ea-perks {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="mainNav">
+        <div class="container nav-inner">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-mark"><i class="fas fa-wave-square"></i></div>
+                SoundSteps
+            </a>
+            <div class="nav-actions">
+                <a href="#how" class="btn btn-ghost">How It Works</a>
+                <a href="#signup" class="btn btn-primary"><i class="fas fa-sparkles"></i> Join Early Access</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-canvas">
+            <div class="hero-mesh"></div>
+            <div class="hero-grain"></div>
+            <div class="hero-line-1"></div>
+            <div class="hero-line-2"></div>
+            <div class="hero-circle"></div>
+        </div>
+        <div class="container">
+            <div class="hero-layout">
+                <div class="hero-content">
+                    <div class="hero-eyebrow reveal"><i class="fas fa-circle-check"></i> Parent-led · UK-built ·
+                        Evidence-informed</div>
+                    <h1 class="hero-headline reveal d1">Supporting your child's <em>speech journey,</em> together.</h1>
+                    <p class="hero-sub reveal d2">A calm, structured app helping families practise speech sounds at home
+                        — whether you're on a waiting list, alongside therapy, or simply want to help your child
+                        flourish.</p>
+                    <div class="hero-btns reveal d3">
+                        <a href="#signup" class="btn btn-primary"><i class="fas fa-bolt"></i> Join Early Access</a>
+                        <a href="#how" class="btn btn-ghost">See How It Works</a>
+                    </div>
+                    <div class="hero-social-proof reveal d4">
+                        <div class="proof-avatars">
+                            <div class="proof-avatar pa-1">JM</div>
+                            <div class="proof-avatar pa-2">KT</div>
+                            <div class="proof-avatar pa-3">SR</div>
+                        </div>
+                        <p class="proof-text"><strong>Built by parents</strong>, for parents who truly understand</p>
+                    </div>
+                </div>
+                <div class="hero-visual reveal from-right d2">
+                    <div class="orb-main">
+                        <div class="orb-inner">
+                            <div class="orb-icon"><i class="fas fa-waveform-lines"></i></div>
+                            <div class="wave-vis">
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                                <div class="wv-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chip-card chip-a">
+                        <div class="cc-icon cc-coral"><i class="fas fa-volume-high"></i></div>
+                        <div>
+                            <h5>Clear Sound Models</h5>
+                            <p>Professional audio for home practice</p>
+                        </div>
+                    </div>
+                    <div class="chip-card chip-b">
+                        <div class="cc-icon cc-mint"><i class="fas fa-users"></i></div>
+                        <div>
+                            <h5>Family-Friendly</h5>
+                            <p>Designed for real home environments</p>
+                        </div>
+                    </div>
+                    <div class="chip-card chip-c">
+                        <div class="cc-icon cc-gold"><i class="fas fa-trophy"></i></div>
+                        <div>
+                            <h5>Build Confidence</h5>
+                            <p>Celebrate small wins together</p>
+                        </div>
+                    </div>
+                    <div class="pill-tag pill-a">
+                        <i class="fas fa-shield-check"></i> Safe & Private
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="problem-section" id="problem">
+        <div class="container">
+            <div class="prob-header reveal">
+                <div class="section-tag">The Challenge Parents Face</div>
+                <h2>You want to help your child.<br>The system makes it hard.</h2>
+                <p style="margin-top:1rem;">Speech and language challenges are incredibly common — yet support is
+                    stretched thin and waiting times leave families uncertain about how best to help at home.</p>
+            </div>
+            <div class="stats-row">
+                <div class="stat-card reveal d1">
+                    <div class="stat-big"><span class="accent">1</span> in 10</div>
+                    <div class="stat-desc">Children experience long-term speech, language and communication needs</div>
+                    <div class="stat-src">Speech and Language UK</div>
+                </div>
+                <div class="stat-card reveal d2">
+                    <div class="stat-big"><span class="accent">6×</span></div>
+                    <div class="stat-desc">More likely to struggle with reading at age 11 if speech difficulties present
+                        at age 5</div>
+                    <div class="stat-src">Department for Education</div>
+                </div>
+                <div class="stat-card reveal d3">
+                    <div class="stat-big"><span class="accent">68k<span style="font-size:1.8rem">+</span></span></div>
+                    <div class="stat-desc">Children currently waiting for speech and language therapy support in England
+                    </div>
+                    <div class="stat-src">NHS / BMJ reports</div>
+                </div>
+                <div class="stat-card reveal d4">
+                    <div class="stat-big"><span class="accent">81<span style="font-size:1.8rem">%</span></span></div>
+                    <div class="stat-desc">Of children with emotional and behavioural disorders also have significant
+                        language difficulties</div>
+                    <div class="stat-src">Speech and Language UK</div>
+                </div>
+            </div>
+            <div class="quotes-grid">
+                <div class="quote-card reveal d1">
+                    <div class="qc-icon" style="background:var(--coral-pale);"><i class="fas fa-book-open"
+                            style="color:var(--coral);"></i></div>
+                    <div>
+                        <blockquote>"Early language development is one of the strongest predictors of later academic
+                            success."</blockquote>
+                        <cite>Education Endowment Foundation</cite>
+                    </div>
+                </div>
+                <div class="quote-card reveal d2">
+                    <div class="qc-icon" style="background:var(--mint-pale);"><i class="fas fa-clock"
+                            style="color:var(--mint);"></i></div>
+                    <div>
+                        <blockquote>"Almost 1 in 4 children waiting for community health services wait over a year for
+                            care."</blockquote>
+                        <cite>Nuffield Trust</cite>
+                    </div>
+                </div>
+                <div class="quote-card reveal d3">
+                    <div class="qc-icon" style="background:var(--gold-pale);"><i class="fas fa-brain"
+                            style="color:var(--gold);"></i></div>
+                    <div>
+                        <blockquote>"Early identification and support can help prevent difficulties from escalating as
+                            children enter school."</blockquote>
+                        <cite>Early Intervention Foundation</cite>
+                    </div>
+                </div>
+                <div class="quote-card reveal d4">
+                    <div class="qc-icon" style="background:var(--coral-pale);"><i class="fas fa-house"
+                            style="color:var(--coral);"></i></div>
+                    <div>
+                        <blockquote>"Parent-led practice and supportive learning environments can help children build
+                            communication confidence over time."</blockquote>
+                        <cite>Speech and Language UK</cite>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="solution-section" id="solution">
+        <div class="container">
+            <div class="sol-grid">
+                <div class="reveal from-left">
+                    <div class="section-tag">Our Approach</div>
+                    <h2 style="font-size:clamp(2rem,3.8vw,3rem);font-weight:900;margin-bottom:1.4rem;">A supportive
+                        tool,<br>not a replacement.</h2>
+                    <div class="sol-text-side">
+                        <p>SoundSteps gives families the structure and confidence to practise speech sounds regularly at
+                            home — whether you're on an NHS waiting list, receiving therapy, or simply looking for a
+                            consistent daily routine.</p>
+                    </div>
+                    <p class="sol-pull">"Not a therapy replacement — a bridge between sessions and home."</p>
+                    <a href="#signup" class="btn btn-primary"><i class="fas fa-arrow-right"></i> Get Early Access</a>
+                </div>
+                <div class="sol-stack reveal from-right d2">
+                    <div class="sol-item">
+                        <div class="sol-num-badge">01</div>
+                        <div class="sol-item-body">
+                            <h4>Designed for Real Families</h4>
+                            <p>Built around how parents and children actually interact at home — not clinical
+                                environments.</p>
+                        </div>
+                    </div>
+                    <div class="sol-item">
+                        <div class="sol-num-badge">02</div>
+                        <div class="sol-item-body">
+                            <h4>Evidence-Informed Practice</h4>
+                            <p>Structured around speech therapy principles, developed alongside professional guidance.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sol-item">
+                        <div class="sol-num-badge">03</div>
+                        <div class="sol-item-body">
+                            <h4>Calm & Supportive</h4>
+                            <p>Gentle sessions that encourage without overwhelming your child or you.</p>
+                        </div>
+                    </div>
+                    <div class="sol-item">
+                        <div class="sol-num-badge">04</div>
+                        <div class="sol-item-body">
+                            <h4>Progress Tracking</h4>
+                            <p>Save recordings you can share with your child's speech therapist or school.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-section" id="how">
+        <div class="container">
+            <div class="how-header reveal">
+                <div class="section-tag" style="justify-content:center;display:flex;">How It Works</div>
+                <h2>Five simple steps. Fits your family's day.</h2>
+                <p style="font-size:1.05rem;line-height:1.78;margin-top:1rem;">SoundSteps turns speech practice into
+                    gentle, structured moments — no expertise required, just your presence and encouragement.</p>
+            </div>
+            <div class="steps-track">
+                <div class="steps-spine"></div>
+                <div class="step-row reveal d1">
+                    <div class="step-orb so-coral"><i class="fas fa-headphones"></i></div>
+                    <div class="step-content">
+                        <h3>Listen to a Sound</h3>
+                        <p>Hear clear, targeted speech sounds in a calm, distraction-free environment — showing how each
+                            sound is correctly formed.</p>
+                        <span class="step-pill"><i class="fas fa-ear-listen"></i> Audio-guided</span>
+                    </div>
+                </div>
+                <div class="step-row reveal d2">
+                    <div class="step-orb so-mint"><i class="fas fa-microphone-lines"></i></div>
+                    <div class="step-content">
+                        <h3>Child Repeats the Sound</h3>
+                        <p>Your child is given a gentle, unpressured moment to try repeating the sound — building
+                            confidence gradually at their own pace.</p>
+                        <span class="step-pill"><i class="fas fa-child"></i> Child-paced</span>
+                    </div>
+                </div>
+                <div class="step-row reveal d3">
+                    <div class="step-orb so-gold"><i class="fas fa-hands-holding-heart"></i></div>
+                    <div class="step-content">
+                        <h3>Parent Encourages</h3>
+                        <p>You lead the session. SoundSteps guides you with prompts on how to offer positive
+                            reinforcement and gentle corrections without frustration.</p>
+                        <span class="step-pill"><i class="fas fa-heart"></i> Parent-guided</span>
+                    </div>
+                </div>
+                <div class="step-row reveal d4">
+                    <div class="step-orb so-coral"><i class="fas fa-record-vinyl"></i></div>
+                    <div class="step-content">
+                        <h3>Recordings Are Saved</h3>
+                        <p>Each session is securely logged — building a timeline of progress that you can review and
+                            eventually share with professionals.</p>
+                        <span class="step-pill"><i class="fas fa-lock"></i> Secure & private</span>
+                    </div>
+                </div>
+                <div class="step-row reveal d5">
+                    <div class="step-orb so-mint"><i class="fas fa-seedling"></i></div>
+                    <div class="step-content">
+                        <h3>Gentle Progress Suggestions</h3>
+                        <p>The app reflects on patterns across sessions and offers kind, actionable suggestions to help
+                            guide your next practice.</p>
+                        <span class="step-pill"><i class="fas fa-sparkles"></i> Personalised</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="founder-section" id="founder">
+        <div class="founder-glow-1"></div>
+        <div class="founder-glow-2"></div>
+        <div class="founder-pattern"></div>
+        <div class="container">
+            <div class="founder-layout">
+                <div class="reveal from-left">
+                    <div class="section-tag">Why We Built This</div>
+                    <h2 class="founder-h2">SoundSteps began from our own family's experience.</h2>
+                    <div class="founder-glass">
+                        <h4><i class="fas fa-quote-left"></i> Built by parents who understand</h4>
+                        <ul class="founder-checklist">
+                            <li><i class="fas fa-check-circle"></i> Long waiting lists with no clear guidance</li>
+                            <li><i class="fas fa-check-circle"></i> Appointments cancelled or rearranged</li>
+                            <li><i class="fas fa-check-circle"></i> Wanting to help at home, but unsure how</li>
+                            <li><i class="fas fa-check-circle"></i> A need for something calm, practical, and accessible
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="reveal from-right d2">
+                    <div class="founder-avatar-ring"><i class="fas fa-user"></i></div>
+                    <p class="founder-big-quote">"We didn't set out to build an app. We set out to help our children —
+                        and realised thousands of other families needed the same thing."</p>
+                    <div class="founder-story">
+                        <p>SoundSteps began from our own family's experience.</p>
+                        <p>Our eldest child struggled with speech development. When he started nursery many people
+                            struggled to understand him. Over time his closest friends learned to understand what he was
+                            saying, sometimes even helping teachers interpret his speech at school.</p>
+                        <p>Although he received some early support, speech development has remained something we
+                            continue to work on even now.</p>
+                        <p>Our younger child is now facing similar challenges, but accessing support has become even
+                            more difficult. Waiting lists are longer, appointments are often cancelled or rearranged,
+                            and families can spend long periods unsure how best to help their child practise at home.
+                        </p>
+                        <p>This experience led us to start building SoundSteps — a simple tool designed to help families
+                            practise speech sounds regularly at home while waiting for or alongside professional
+                            support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ea-section" id="signup">
+        <div class="container">
+            <div class="ea-header reveal">
+                <div class="section-tag" style="justify-content:center;display:flex;">Early Access</div>
+                <h2>Help shape the future of SoundSteps</h2>
+            </div>
+            <div class="ea-why-box reveal d1">
+                <div class="ea-why-title">Why join early access?</div>
+                <div class="ea-perks">
+                    <div class="ea-perk"><i class="fas fa-check-circle"></i> Help shape the future of SoundSteps</div>
+                    <div class="ea-perk"><i class="fas fa-check-circle"></i> Support your child's speech practice at
+                        home</div>
+                    <div class="ea-perk"><i class="fas fa-check-circle"></i> Join other parents looking for practical
+                        ways to help</div>
+                </div>
+                <div class="ea-chips">
+                    <div class="ea-chip"><i class="fas fa-users"></i> Early access group forming now</div>
+                    <div class="ea-chip"><i class="fas fa-star"></i> Parents helping build the future of SoundSteps
+                    </div>
+                    <div class="ea-chip"><i class="fas fa-shield-check"></i> No spam, ever</div>
+                </div>
+            </div>
+            <div class="form-card reveal d2">
+                <div id="formInner">
+                    <div class="form-top">
+                        <h3>Register for Early Access</h3>
+                        <p>Takes less than 2 minutes — and makes a real difference.</p>
+                    </div>
+                    <form id="eaForm" onsubmit="handleSubmit(event)">
+                        <div class="form-grid">
+                            <div class="fg">
+                                <label>Parent / Carer Name <span class="req">*</span></label>
+                                <input type="text" required placeholder="e.g. Jane Smith">
+                            </div>
+                            <div class="fg">
+                                <label>Email Address <span class="req">*</span></label>
+                                <input type="email" required placeholder="hello@example.com">
+                            </div>
+                            <div class="fg">
+                                <label>Location (City / Region) <span class="req">*</span></label>
+                                <input type="text" required placeholder="e.g. Manchester, UK">
+                            </div>
+                            <div class="fg">
+                                <label>Child's Age Range <span class="req">*</span></label>
+                                <select required>
+                                    <option value="" disabled selected>Select age range</option>
+                                    <option>Under 2 years</option>
+                                    <option>2 – 3 years</option>
+                                    <option>4 – 5 years</option>
+                                    <option>6+ years</option>
+                                </select>
+                            </div>
+                            <div class="fg">
+                                <label>Who is the app for? <span class="req">*</span></label>
+                                <select required>
+                                    <option value="" disabled selected>Select an option</option>
+                                    <option>My child</option>
+                                    <option>A child I care for</option>
+                                    <option>I am a professional (SLT / Educator)</option>
+                                </select>
+                            </div>
+                            <div class="fg">
+                                <label>Current Support Status <span class="req">*</span></label>
+                                <select required>
+                                    <option value="" disabled selected>Select status</option>
+                                    <option>Waiting for NHS support</option>
+                                    <option>Receiving NHS support</option>
+                                    <option>Receiving private support</option>
+                                    <option>Not currently receiving support</option>
+                                </select>
+                            </div>
+                            <div class="fg span2">
+                                <label>What concerns you most about your child's speech development? <span
+                                        class="req">*</span></label>
+                                <textarea required
+                                    placeholder="e.g. Pronunciation, limited vocabulary, frustration when communicating..."></textarea>
+                            </div>
+                            <div class="fg span2">
+                                <label>How did you hear about us?</label>
+                                <input type="text" placeholder="e.g. Google, Social Media, Friend">
+                            </div>
+                            <div class="fg span2" style="gap:12px;">
+                                <label class="check-wrap">
+                                    <input type="checkbox">
+                                    <span>I would be open to giving feedback during the early access phase to help
+                                        improve the app.</span>
+                                </label>
+                                <label class="check-wrap">
+                                    <input type="checkbox">
+                                    <span>I feel there is not enough speech development support available in my local
+                                        area.</span>
+                                </label>
+                            </div>
+                            <div class="fg span2">
+                                <button type="submit" class="btn btn-primary form-submit"><i class="fas fa-bolt"></i>
+                                    Join the Early Access List</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="success-panel" id="successPanel">
+                    <div class="success-orb"><i class="fas fa-check"></i></div>
+                    <h3>You're on the list!</h3>
+                    <p>Thank you for joining the SoundSteps early access group. We'll be in touch soon with updates and
+                        when the app is ready for you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <div class="nav-logo-mark"><i class="fas fa-wave-square"></i></div>
+                        SoundSteps
+                    </a>
+                    <p>A calm, parent-led speech practice app helping families support children's communication
+                        development at home.</p>
+                </div>
+                <div class="footer-col">
+                    <h6>Product</h6>
+                    <ul>
+                        <li><a href="#how">How It Works</a></li>
+                        <li><a href="#problem">The Challenge</a></li>
+                        <li><a href="#solution">Our Approach</a></li>
+                        <li><a href="#founder">Our Story</a></li>
+                        <li><a href="#signup">Early Access</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h6>Company</h6>
+                    <ul>
+                        <li><a href="mailto:hello@soundsteps.co.uk">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 SoundSteps. All rights reserved. Built to support early childhood communication
+                    development.</p>
+                <p class="dev-credit">Designed & Developed by <span>Afaq Ahmad</span> &mdash; 2026</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => nav.classList.toggle('stuck', window.scrollY > 60));
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        function handleSubmit(e) {
+            e.preventDefault();
+            document.getElementById('formInner').style.display = 'none';
+            document.getElementById('successPanel').style.display = 'block';
+            document.getElementById('signup').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                const t = document.querySelector(this.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+        document.querySelectorAll('.stat-big').forEach(el => {
+            const raw = el.innerHTML;
+            const num = parseFloat(raw.replace(/<[^>]*>/g, '').replace(/[^0-9.]/g, ''));
+            if (isNaN(num) || num < 2) return;
+            const inner = el.innerHTML;
+            gsap.from({ val: 0 }, {
+                val: num, duration: 1.8, ease: 'power2.out',
+                scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+                onUpdate: function () { el.innerHTML = inner.replace(num, Math.round(this.targets()[0].val)); }
+            });
+        });
+    </script>
+</body>
+
+</html>
